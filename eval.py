@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
+from torchvision import transforms
+from data.dataset import TinyImageNetDataset
 from models.custom_net import CustomNet
 
 def evaluate(model, test_loader, criterion):
