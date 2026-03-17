@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
+from data.dataset import TinyImageNetDataset
 from models.custom_net import CustomNet
 import wandb
 
@@ -80,9 +81,9 @@ if __name__ == "__main__":
     ])
 
     # --- Dataset ---
-    train_dataset = datasets.ImageFolder(f"{DATA_DIR}/train", transform=transform)
-    val_dataset   = datasets.ImageFolder(f"{DATA_DIR}/val", transform=transform)
-
+    train_dataset = TinyImageNetDataset(DATA_DIR, split='train', transform=transform)
+    val_dataset   = TinyImageNetDataset(DATA_DIR, split='val',   transform=transform)
+    
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True, num_workers=4)
     val_loader   = DataLoader(val_dataset,   batch_size=BATCH_SIZE, shuffle=False, num_workers=4)
 
