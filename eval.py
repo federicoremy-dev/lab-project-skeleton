@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
 from models.custom_net import CustomNet
 
 def evaluate(model, test_loader, criterion):
@@ -37,7 +36,7 @@ if __name__ == "__main__":
                              std=[0.229, 0.224, 0.225])
     ])
 
-    val_dataset = datasets.ImageFolder(f"{DATA_DIR}/val", transform=transform)
+    val_dataset = TinyImageNetDataset(DATA_DIR, split='val', transform=transform)
     val_loader  = DataLoader(val_dataset, batch_size=64, shuffle=False, num_workers=4)
 
     model = CustomNet().cuda()
